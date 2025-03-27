@@ -33,13 +33,13 @@ class MainActivity : AppCompatActivity() {
             R.drawable.mayawati,
             R.drawable.bada_imambara,
         )
-//        Glide.with(this)
-//            .load("https://static2.tripoto.com/media/filter/nl/img/1649149/TripDocument/1568134333_9_view_of_the_bada_imambara_complex.jpg.webp48622")
-//            .into(mainImage) // Replace with your ImageView
-//
+        Glide.with(this)
+            .load("https://static2.tripoto.com/media/filter/nl/img/1649149/TripDocument/1568134333_9_view_of_the_bada_imambara_complex.jpg.webp48622")
+            .into(mainImage) // Replace with your ImageView
+
 
         var index=0
-        mainImage.setImageResource(images[images.size/2])
+        //mainImage.setImageResource(images[images.size/2])
 
         leftImage.setOnClickListener {
             index--
