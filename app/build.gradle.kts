@@ -43,8 +43,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")   //Glide - To load the images from google
     kapt("com.github.bumptech.glide:compiler:4.16.0") // Required for annotations
+//    implementation("androidx.dynamicanimation:dynamicanimation:1.1.0:")    //To local images fade in effect
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)

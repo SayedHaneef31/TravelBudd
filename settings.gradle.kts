@@ -16,6 +16,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter() // Optional, but sometimes needed  JUST IN CASE
     }
 }
 

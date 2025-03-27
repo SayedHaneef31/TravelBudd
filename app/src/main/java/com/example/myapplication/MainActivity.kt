@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,22 +20,34 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.hide()
+
         val leftImage = findViewById<ImageView>(R.id.leftImageID)
         val rightImage = findViewById<ImageView>(R.id.rightImageID)
         val mainImage = findViewById<ImageView>(R.id.mainImageID)
         val cityText = findViewById<TextView>(R.id.CityTextID)
 
-        cityText.text="Lucknow"
+        cityText.text="Explore Lucknow"
 
-        val images= arrayOf(
-            R.drawable.college,
-            R.drawable.clock,
-            R.drawable.darwaza,
-            R.drawable.mayawati,
-            R.drawable.bada_imambara,
+//        val images= arrayOf(
+//            R.drawable.college,
+//            R.drawable.clock,
+//            R.drawable.darwaza,
+//            R.drawable.mayawati,
+//            R.drawable.bada_imambara,
+//        )
+
+        val images = arrayOf(
+            Pair(R.drawable.college, "Lucknow University"),
+            Pair(R.drawable.clock, "Clock Tower"),
+            Pair(R.drawable.darwaza, "Rumi Darwaza"),
+            Pair(R.drawable.mayawati, "Ambedkar Park"),
+            Pair(R.drawable.bada_imambara, "Bada Imambara"),
         )
+
         Glide.with(this)
-            .load("https://static2.tripoto.com/media/filter/nl/img/1649149/TripDocument/1568134333_9_view_of_the_bada_imambara_complex.jpg.webp48622")
+            .load("https://static2.tripoto.com/media/filter/nl/img/1649149/TripDocument/1568134333_9_view_of_the_bada_imambara_complex.jpg.webp")
+            .transition(DrawableTransitionOptions.withCrossFade()) // Smooth transition
             .into(mainImage) // Replace with your ImageView
 
 
@@ -46,7 +59,9 @@ class MainActivity : AppCompatActivity() {
             if(index<0){
                 index=images.size-1
             }
-            mainImage.setImageResource(images[index])
+            mainImage.setImageResource(images[index].first)
+            cityText.text=images[index].second       //Changing the textview field to the name of the image
+            fadeInImage(mainImage) // Applying fade-in animation
         }
 
         rightImage.setOnClickListener {
@@ -54,7 +69,9 @@ class MainActivity : AppCompatActivity() {
             if(index==images.size){
                 index=0
             }
-            mainImage.setImageResource(images[index])
+            mainImage.setImageResource(images[index].first)
+            cityText.text=images[index].second     //Changing the textview field to the name of the image
+            fadeInImage(mainImage) // Applying fade-in animation
         }
 
 
@@ -72,4 +89,12 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
+    private fun fadeInImage(imageView: ImageView) {
+        imageView.alpha = 0f // Start with invisible
+        imageView.animate()
+            .alpha(1f) // Fade in to full opacity
+            .setDuration(500) // Half a second
+            .start()
+    }
+
 }
